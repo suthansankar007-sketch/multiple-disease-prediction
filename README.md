@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Disease Prediction System
 
 A machine learning-based web application for predicting multiple diseases (Diabetes, Heart Disease, Kidney Disease, and Hypertension) using user input data and trained models.
@@ -61,3 +62,7 @@ A machine learning-based web application for predicting multiple diseases (Diabe
 
 ## License
 This project is licensed under the MIT License.
+=======
+# multiple-disease-prediction
+AI-powered web application that predicts Diabetes, Heart Disease, Kidney Disease, and Hypertension using Machine Learning models built with Python and Streamlit.
+>>>>>>> 38258c4f73d99fd0a164143cca3390d3f2801f53
