@@ -1,63 +1,69 @@
 import streamlit as st
-from prediction import predict_diabetes,predict_heart,predict_kidney,predict_hyper
+from prediction import predict_diabetes, predict_heart, predict_kidney, predict_hyper
 
 st.title("Multiple Disease Prediction System")
 
 option = st.sidebar.selectbox(
     "Select Disease",
-    ["Diabetes","Heart Disease","Kidney Disease","Hypertension"]
+    ["Diabetes", "Heart Disease", "Kidney Disease", "Hypertension"]
 )
 
-if option=="Diabetes":
+# ---------------- Diabetes ----------------
+if option == "Diabetes":
 
     st.header("Diabetes Prediction")
 
-    pregnancies = st.number_input("Pregnancies")
-    glucose = st.number_input("Glucose")
-    bp = st.number_input("Blood Pressure")
-    skin = st.number_input("Skin Thickness")
-    insulin = st.number_input("Insulin")
-    bmi = st.number_input("BMI")
-    dpf = st.number_input("Diabetes Pedigree Function")
     age = st.number_input("Age")
+    gender = st.selectbox("Gender", ["Male", "Female"])
+    glucose = st.number_input("Sugar Level (Glucose)")
+    chol = st.number_input("Cholesterol")
+    bp = st.number_input("Blood Pressure")
+    bmi = st.number_input("BMI")
+
+    gender_val = 1 if gender == "Male" else 0
 
     if st.button("Predict"):
-        result = predict_diabetes([pregnancies,glucose,bp,skin,insulin,bmi,dpf,age])
+        result = predict_diabetes([age, gender_val, glucose, chol, bp, bmi])
         st.success(result)
 
-
-elif option=="Heart Disease":
+# ---------------- Heart ----------------
+elif option == "Heart Disease":
 
     st.header("Heart Disease Prediction")
 
     age = st.number_input("Age")
+    gender = st.selectbox("Gender", ["Male", "Female"])
     chol = st.number_input("Cholesterol")
     bp = st.number_input("Blood Pressure")
 
+    gender_val = 1 if gender == "Male" else 0
+
     if st.button("Predict"):
-        result = predict_heart([age,chol,bp])
+        result = predict_heart([age, gender_val, chol, bp])
         st.success(result)
 
-
-elif option=="Kidney Disease":
+# ---------------- Kidney ----------------
+elif option == "Kidney Disease":
 
     st.header("Kidney Disease Prediction")
 
-    bp = st.number_input("Blood Pressure")
+    age = st.number_input("Age")
     sugar = st.number_input("Blood Sugar")
+    bp = st.number_input("Blood Pressure")
 
     if st.button("Predict"):
-        result = predict_kidney([bp,sugar])
+        result = predict_kidney([age, sugar, bp])
         st.success(result)
 
-
-elif option=="Hypertension":
+# ---------------- Hypertension ----------------
+elif option == "Hypertension":
 
     st.header("Hypertension Prediction")
 
     age = st.number_input("Age")
     bmi = st.number_input("BMI")
+    bp = st.number_input("Blood Pressure")
 
     if st.button("Predict"):
-        result = predict_hyper([age,bmi])
+        result = predict_hyper([age, bmi, bp])
         st.success(result)
